@@ -57,4 +57,10 @@
             </plugin>
         </plugins>
     </build>
+    <!--<distributionManagement>
+   <snapshotRepository>
+      <id>repo</id>
+      <url>http://x.x.x.x:8081/repository/repo/</url>
+   </snapshotRepository>
+</distributionManagement>-->
 </project>
