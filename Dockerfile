@@ -69,7 +69,7 @@ RUN chmod -R 755 /opt/tomcat7
 ENV JAVA_HOME /opt/jdk1.7.0_79
 #ENV PATH $PATH:$JAVA_HOME/bin:/opt/tomcat/bin
 
-#default port for tomcat
+#default port for tomcat in container
 EXPOSE 8080
 
 #WORKDIR /opt/tomcat7/bin
