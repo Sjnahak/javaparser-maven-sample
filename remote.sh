@@ -24,3 +24,25 @@ for i in $(echo $I | tr ',' '\n')
 a=`$SSH $i "$com"` ## Remote execution  
 echo -e "$i \n O/P for $com is $a"  
 done
+
+
+#########################################################
+cat pass.exp
+#!/usr/bin/expect
+spawn ssh-copy-id root@localhost
+expect "Are you sure you want to continue connecting (yes/no)?"
+send "yes\n";
+expect "/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys\n"
+expect "root@localhost's password: "
+send "x\n";
+interact
+
+cat passwd.sh
+#!/bin/bash
+/opt/pass.exp
+
+#!/bin/bash
+/usr/bin/expect -c 'expect "\n" { eval spawn ssh -oStrictHostKeyChecking=no -oCheckHostIP=no usr@$myhost.example.com; interact }'
+
+sshpass -f /home/admin/passwd ssh-copy-id admin@ip
