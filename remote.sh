@@ -46,3 +46,15 @@ cat passwd.sh
 /usr/bin/expect -c 'expect "\n" { eval spawn ssh -oStrictHostKeyChecking=no -oCheckHostIP=no usr@$myhost.example.com; interact }'
 
 sshpass -f /home/admin/passwd ssh-copy-id admin@ip
+
+############################################################################################################
+#!/bin/bash
+df -H | grep -vE '^Filesystem|none|cdrom' | awk '{ print $5 " " $1 }' | while read output; do
+  echo $output
+  usep=$(echo $output | awk '{ print $1}' | cut -d'%' -f1  )
+  partition=$(echo $output | awk '{ print $2 }' )
+  if [ $usep -ge 90 ]; then
+    echo -e "Hi Team\nRunning out of disk space \"$partition ($usep%)\" on $(hostname) as on $(date)\nThanks\nServer Admin" |
+    mail -s "Alert: Almost out of disk space $usep% on Server $(hostname)" suraj.nahak@test.com
+  fi
+done
